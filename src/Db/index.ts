@@ -19,7 +19,7 @@ import { SnakeNamingStrategy } from "typeorm-naming-strategies";
             __dirname + '/../**/*.entity.ts',
             __dirname + '/../**/*.entity.js',
           ],
-          synchronize: false,
+          synchronize: true,
           logging: ['error', 'info', 'query'],
           namingStrategy: new SnakeNamingStrategy(),
         }),
