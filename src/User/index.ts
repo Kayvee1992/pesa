@@ -1,4 +1,5 @@
 import { Module, Provider } from "@nestjs/common";
+import { CommonModule } from "../Common";
 import { USER_SERVICE } from "./Constant";
 import { UserController } from "./controller/UserController";
 import { UserService } from "./service/UserService";
@@ -9,7 +10,7 @@ const userServiceProvider:Provider = {
 };
 
 @Module({
-  imports: [],
+  imports: [CommonModule],
   providers: [userServiceProvider],
   controllers: [UserController],
   exports: [userServiceProvider],

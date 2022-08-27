@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { config } from "dotenv";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
 @Module({
@@ -10,15 +11,12 @@ import { SnakeNamingStrategy } from "typeorm-naming-strategies";
         inject: [ConfigService],
         useFactory: (configService: ConfigService) => ({
           type: 'postgres',
-          host: configService.get('DB_HOST'),
-          port: configService.get('DB_PORT'),
-          username: configService.get('DB_USER'),
-          password: configService.get('DB_PASSWORD'),
-          database: configService.get('DB_SCHEMA_NAME'),
-          entities: [
-            __dirname + '/../**/*.entity.ts',
-            __dirname + '/../**/*.entity.js',
-          ],
+          host: 'localhost',
+          port: 5432,
+          username: 'instashop',
+          password: 'instashop_local',
+          database: 'pesa',
+          entities: [`${__dirname}/../**/entities/**{.ts,.js}`],
           synchronize: true,
           logging: ['error', 'info', 'query'],
           namingStrategy: new SnakeNamingStrategy(),
